@@ -11,7 +11,7 @@ const displayData = (datas) => {
   const catagory = document.getElementById("catagory");
   datas.forEach((data) => {
     const btn = document.createElement("div");
-    // console.log(data);
+    console.log(data);
     btn.innerHTML = `
         <button onclick="loadId('${data.category_id}')" class="catagory-btn fw-semibold">${data.category_name}</button>
         `;
@@ -20,14 +20,6 @@ const displayData = (datas) => {
 };
 // 3No
 const loadId = (id, name) => {
-  //   console.log(id);
-  //   console.log(name);
-  //   const catagoryName = document.getElementById("catagory");
-  //   catagoryName.innerText = "";
-  //   const h4 = document.createElement("span");
-  //   h4.innerText = name;
-  //   catagoryName.appendChild(h4);
-  //   console.log(id);
   loadallnews(id);
 };
 const loadallnews = (id) => {
@@ -41,6 +33,11 @@ const diaplayNews = (datas) => {
   console.log(datas);
 
   const dataLength = document.getElementById("data-length");
+  if (datas.length === 0) {
+    dataLength.innerText = `No items found for this cetagory !`;
+  } else {
+    dataLength.innerText = `${datas.length} items found for this cetagory`;
+  }
   dataLength.innerText = datas.length;
 
   const cardSec = document.getElementById("card-section");
@@ -69,7 +66,30 @@ const diaplayNews = (datas) => {
       <div><p>Total View <span class="mt-4"> <i class="fa-solid fa-eye">  ${
         data.total_view
       } </i> </span></p>
- 
+      
+
+      <i onclick="displayNewsDetails('${
+        data._id
+      }')" class="fa-solid fa-arrow-right text-primary fs-5 me-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="modal-body" class="modal-body">
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+      
 </div>
  </div>
  </div>
@@ -80,5 +100,49 @@ const diaplayNews = (datas) => {
 
             `;
     cardSec.appendChild(cardSecDiv);
+  }
+};
+// Modal
+const displayNewsDetails = async (news_id) => {
+  const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => detailsOnModal(data.data[0]))
+    .catch((error) => console.log(error));
+};
+const detailsOnModal = (detail) => {
+  console.log(detail._id);
+  const modalBody = document.getElementById("modal-body");
+
+  modalBody.innerHTML = `
+  <img class="img-fluid" src="${detail.image_url}" alt="">
+  <p class="mt-3">Published : ${detail.author.published_date}</p>
+  <h5>${detail.title}</h5>
+  <p class="mt-3">${detail.details}</p>
+  <div class="d-md-none d-flex justify-content-between">
+    <div>
+      <i class="fa-regular fa-eye me-1"></i>
+      <span class="fw-semibold">${
+        detail.total_view ? detail.total_view : "No data found"
+      }</span>
+    </div>
+    <div>
+      <i class="fa-regular fa-star-half-stroke"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+    </div>
+  </div>
+  `;
+};
+
+// spinner or loader
+const spinnerContainer = document.getElementById("spinner-container");
+const spinner = (isLoading) => {
+  if (isLoading) {
+    spinnerContainer.classList.remove("d-none");
+  } else {
+    spinnerContainer.classList.add("d-none");
   }
 };

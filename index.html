@@ -59,18 +59,46 @@
           id="catagory"
           class="catagory d-flex justify-content-between"
         ></div>
+          <!-- Spiner Loader -->
+          <div id="spinner-container" class="d-flex justify-content-center align-items-center d-none">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <!-- Spnier Loader End -->
       </section>
 
       <section><div class="container m-4">
         <h5> <span  id="data-length"></span> Item Founded For <span id="data-catagorys"></span>This Catagory </h5>
-              </div></section>
-
+              </div>
+            
+            </section>
+              <section class="container m-4">
+                <div id="select-option-div" class="d-block d-md-flex mx-auto mt-5  justify-content-between">
+                  <div class="sort-section ms-3 ms-md-0">
+                    <p class="d-inline-block me-2">Sort By View :</p>
+                    <select class="form-select select-option bg-white d-inline-block text-muted" aria-label="Default select example">
+                      <option selected="">Shorted By Name</option>
+                      <option selected="">Shorted By UperCase</option>
+                      <option selected="">Shorted By LowerCase</option>
+                      <option selected="">Default</option>
+                    </select>
+                  </div>
+                  <div class="text-start text-md-end sort-section mt-3 mt-md-0">
+                    <button type="button" class="btn btn-primary px-4  fw-semibold me-2">Today’s Pick</button>
+                    <button type="button" class="btn btn-outline-primary px-4 fw-semibold ">Trending</button>
+                  </div>
+                </div>
+              </section>
 
       <!-- Newa Section -->
       <section class="container">
         <div id="card-section" class="row row-cols-4 row-cols-md-3 g-4"></div>
+        <!-- Scrollable modal -->
+
       </section>
     </main>
     <script src="index.js"></script>
   </body>
+  
 </html>
