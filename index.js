@@ -40,16 +40,15 @@ const loadallnews = (id) => {
 const diaplayNews = (datas) => {
   console.log(datas);
 
+  const dataLength = document.getElementById("data-length");
+  dataLength.innerText = datas.length;
+
   const cardSec = document.getElementById("card-section");
   cardSec.textContent = "";
 
   for (const data of datas) {
     const cardSecDiv = document.createElement("div");
     cardSecDiv.innerHTML = `
-    
-  
-
-
   <div class="col">
     <div class="card h-100">
       <img src="${data.thumbnail_url}" class="card-img-top" alt="...">
