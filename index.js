@@ -42,7 +42,7 @@ const diaplayNews = (datas) => {
 
   const cardSec = document.getElementById("card-section");
   cardSec.textContent = "";
-
+  // Sort Only Defult
   datas.sort((a, b) => b.total_view - a.total_view);
 
   for (const data of datas) {
@@ -138,6 +138,9 @@ const detailsOnModal = (detail) => {
   </div>
   `;
 };
+
+
+// Spinner
 
 // spinner or loader
 const spinnerContainer = document.getElementById("spinner-container");
