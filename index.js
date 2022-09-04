@@ -34,7 +34,7 @@ const diaplayNews = (datas) => {
 
   const dataLength = document.getElementById("data-length");
   if (datas.length === 0) {
-    dataLength.innerText = `No items found for this cetagory !`;
+    dataLength.innerText = `No items found for this cetagory`;
   } else {
     dataLength.innerText = `${datas.length} items found for this cetagory`;
   }
