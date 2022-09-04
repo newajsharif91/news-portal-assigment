@@ -43,6 +43,8 @@ const diaplayNews = (datas) => {
   const cardSec = document.getElementById("card-section");
   cardSec.textContent = "";
 
+  datas.sort((a, b) => b.total_view - a.total_view);
+
   for (const data of datas) {
     const cardSecDiv = document.createElement("div");
     cardSecDiv.innerHTML = `
