@@ -18,17 +18,17 @@ const displayData = (datas) => {
     catagory.appendChild(btn);
   });
 };
-// 3No
 const loadId = (id, name) => {
   loadallnews(id);
 };
 const loadallnews = (id) => {
-  console.log(id);
+  spiner(true);
   const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => diaplayNews(data.data));
 };
+
 const diaplayNews = (datas) => {
   console.log(datas);
 
@@ -90,18 +90,17 @@ const diaplayNews = (datas) => {
       </div>
     </div>
   </div>
-</div>
-      
+</div>  
 </div>
  </div>
  </div>
-      </div>
+ </div>
     </div>
     
   </div>
-
-            `;
+      `;
     cardSec.appendChild(cardSecDiv);
+    spiner(false);
   }
 };
 // Modal
@@ -139,15 +138,13 @@ const detailsOnModal = (detail) => {
   `;
 };
 
+// Spiner Loader
 
-// Spinner
-
-// spinner or loader
-const spinnerContainer = document.getElementById("spinner-container");
-const spinner = (isLoading) => {
+const spiner = (isLoading) => {
+  const loaderSection = document.getElementById("spinner-container");
   if (isLoading) {
-    spinnerContainer.classList.remove("d-none");
+    loaderSection.classList.remove("d-none");
   } else {
-    spinnerContainer.classList.add("d-none");
+    loaderSection.classList.add("d-none");
   }
 };
